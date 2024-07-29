@@ -1,4 +1,4 @@
-const ExpenseSchema = require('../model/ExpenseModel')
+const Transaction = require('../model/Transaction')
 
 exports.addExpense = async (req, res) => {
     const {
@@ -9,7 +9,7 @@ exports.addExpense = async (req, res) => {
         date
     } = req.body
      
-   const income = ExpenseSchema({
+   const income = new Transaction({
     title,
     amount,
     category,
@@ -27,13 +27,13 @@ exports.addExpense = async (req, res) => {
     res.status(500).json({message: 'Server Error.'})
    }
 
-   console.log(income)
+
 
 }
 
 exports.getExpense = async (req, res) => {
     try {
-        const incomes = await ExpenseSchema.find().sort({createdAt: -1})
+        const incomes = await Transaction.find().sort({createdAt: -1})
         res.status(200).json(incomes)
     }catch (error) {
         res.status(500).json({message: 'Server error.'})
@@ -42,7 +42,7 @@ exports.getExpense = async (req, res) => {
 
 exports.deleteExpense = async (req, res) => {
     const {id} = req.params;
-    ExpenseSchema.findIdAndDelete(id)
+    Transaction.findIdAndDelete(id)
         .then((income)=>{
             res.status(200).json({message: 'Expense Deleted.'})
         })
