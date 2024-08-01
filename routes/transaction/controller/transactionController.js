@@ -7,18 +7,23 @@ const addTransaction = async (req, res) => {
         category
     } = req.body
      
-    if(!title || !category  || !amount){
+    if(!title || !category  || !amount || !type){
         return res.status(400).json({message: 'info required'})
     }
 //in js use typeof amount to check amount.
     if (typeof amount !== 'number' || amount <= 0){
         return res.status(400).json({message: 'Amount must be a positive number!'})
     }
+    //handle expense
+    if(!['income', 'expense'].includes(type)){
+        return res.status(400).json({message: 'Type must be either income or expense.'})
+    }
 
     const income = new Transaction({
         title,
         amount,
-        category
+        category,
+        type
     })
     
    try {
