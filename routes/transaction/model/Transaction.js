@@ -13,12 +13,12 @@ const TransactionSchema = new mongoose.Schema({
         maxLength: 20,
         trim: true
     },
-    type: {
-        type: String,
-        //note:enum: specifies value in the array'income or expense'
-        enum: ['income', 'expense'],
-        required: true
-    },
+    // type: {
+    //     type: String,
+    //     //note:enum: specifies value in the array'income or expense'
+    //     enum: ['income', 'expense'],
+    //     required: true
+    // },
     category: {
         type: String,
         required: true,
