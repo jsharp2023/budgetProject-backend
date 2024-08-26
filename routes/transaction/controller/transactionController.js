@@ -1,3 +1,4 @@
+// const User = require('../../Users/model/User')
 const Transaction = require('../model/Transaction')
 
 //function to add new transactions
@@ -16,19 +17,25 @@ const addTransaction = async (req, res) => {
         return res.status(400).json({message: 'Amount must be a  number!'})
     }
    
+    // const userId = res.locals.decodedToken?.id;
+    // if (!userId){
+    //     return res.status(400).json({message: "User ID is Required"})
+    // }
 // creates the new instance
     const income = new Transaction({
         title,
         amount,
         category,
-        // type
+        // userId:res.locals.decodedToken.id
     })
     //here we are saving
    try {
+
     const savedIncome = await income.save()
     res.status(200).json({message: 'Expense Added.', payload:savedIncome})
    }catch (error){
-    res.status(500).json({message: 'Server Error!!'})
+    console.error('Error saving transaction:', error);
+    res.status(500).json({message: 'Server Error!!', error: error.message})
    }
 
 }

@@ -1,7 +1,7 @@
-
+// const morgan = require('morgan')
 const express = require('express')
 const cors = require('cors')
-
+const calendarEventRoutes = require('./routes/calendarEventRoutes')
 
 const app = express()
 
@@ -13,6 +13,8 @@ app.use(cors({
     origin: 'http://localhost:3001'
 }))
 app.use('/api/transaction',transactionRouter)
+// app.use(morgan('dev'))
+app.use('/api/calendar-events', calendarEventRoutes);
 
 
 
