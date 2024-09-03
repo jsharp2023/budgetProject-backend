@@ -1,33 +1,14 @@
-// const express = require("express");
-// const router = express.Router();
-// const {createUser, login, getUsers, getUser} = require('./controller/userController');
-// const checkIsUndefined = require("./helpers/checkIsUndefined");
-// const checkIsEmpty = require("./helpers/checkIsEmpty");
-// const { checkJwtToken } = require('./utils/jwtMiddleware')
-// const { 
-//     checkIsAlphanumericFunc, 
-//     checkIsAlphaFunc, 
-//     checkIsEmailFunc 
-// } = require("./helpers/authMethods");
+const express = require('express');
+const { registerUser, loginUser } = require('../controller/userController');
+const router = express.Router();
 
+// Define the sign-up route
+router.post('/signup', registerUser);
 
-// router.post("/sign-up", 
-//     checkIsUndefined,
-//     checkIsEmpty, 
-//     checkIsAlphanumericFunc, 
-//     checkIsAlphaFunc, 
-//     checkIsEmailFunc,
-//     createUser
-// )
+console.log('SignUp');
 
-// router.post("/login",
-//     checkIsUndefined,
-//     checkIsEmailFunc,
-//      checkIsEmpty,
-//      login
-//     )
+router.post('/Login', loginUser);
 
-//     router.get('/get-all-users', checkJwtToken, getUsers)
-//    router.get('/get-user', checkJwtToken, getUser)
+console.log('userRouter loaded');
 
-// module.exports = router
+module.exports = router;

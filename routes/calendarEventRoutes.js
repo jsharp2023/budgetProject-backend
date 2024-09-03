@@ -14,7 +14,7 @@ router.post('/', async (req, res) => {
 });
 
 // GET route to fetch all events
-router.get('/', async (req, res) => {
+router.get('/calendarEventRouter', async (req, res) => {
   try {
     const events = await CalendarEvent.find();
     res.status(200).json(events);
